@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Named
 @Stateless
-@Path("com.pse.portaempleog6.entities.candidaturas")
+@Path("com.pse.portalempleog6.entities.candidaturas")
 public class CandidaturasFacadeREST extends AbstractFacade<Candidaturas> {
 
     @PersistenceContext(unitName = "com.pse_portaEmpleoG6_war_1.0-SNAPSHOTPU")

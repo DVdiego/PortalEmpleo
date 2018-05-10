@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Candidaturas.findAll", query = "SELECT c FROM Candidaturas c")
     , @NamedQuery(name = "Candidaturas.findByIdCandidatura", query = "SELECT c FROM Candidaturas c WHERE c.idCandidatura = :idCandidatura")
-    , @NamedQuery(name = "Candidaturas.findByIdCandidato", query = "SELECT c FROM Candidaturas c WHERE c.idCandidato = :idCandidato")
+    , @NamedQuery(name = "Candidaturas.findByEmail", query = "SELECT c FROM Candidaturas c WHERE c.email = :email")
     , @NamedQuery(name = "Candidaturas.findByIdOferta", query = "SELECT c FROM Candidaturas c WHERE c.idOferta = :idOferta")})
 public class Candidaturas implements Serializable {
 
@@ -38,10 +39,12 @@ public class Candidaturas implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_candidatura")
     private Integer idCandidatura;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_candidato")
-    private int idCandidato;
+    @Size(min = 1, max = 255)
+    @Column(name = "email")
+    private String email;
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_oferta")
@@ -54,9 +57,9 @@ public class Candidaturas implements Serializable {
         this.idCandidatura = idCandidatura;
     }
 
-    public Candidaturas(Integer idCandidatura, int idCandidato, int idOferta) {
+    public Candidaturas(Integer idCandidatura, String email, int idOferta) {
         this.idCandidatura = idCandidatura;
-        this.idCandidato = idCandidato;
+        this.email = email;
         this.idOferta = idOferta;
     }
 
@@ -68,12 +71,12 @@ public class Candidaturas implements Serializable {
         this.idCandidatura = idCandidatura;
     }
 
-    public int getIdCandidato() {
-        return idCandidato;
+    public String getEmail() {
+        return email;
     }
 
-    public void setIdCandidato(int idCandidato) {
-        this.idCandidato = idCandidato;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getIdOferta() {
@@ -106,7 +109,7 @@ public class Candidaturas implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pse.portaempleog6.entities.Candidaturas[ idCandidatura=" + idCandidatura + " ]";
+        return "com.pse.portalempleog6.entities.Candidaturas[ idCandidatura=" + idCandidatura + " ]";
     }
     
 }

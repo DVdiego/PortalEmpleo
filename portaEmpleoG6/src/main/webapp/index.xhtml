@@ -12,13 +12,14 @@
 
             <ui:define name="content">
                 <h:outputText value="Mostrando #{ofertaFacadeREST.countREST()} 
-                              ofertas en #{empresaFacadeREST.countREST()} empresas!"/>
+                              ofertas en #{usersFacade.countREST()} empresas!"/>
                 <f:view>
 
 
                     <h:form>
                         <h1><h:outputText value="List"/></h1>
                         <p:dataTable value="#{ofertaFacadeREST.findAll()}" var="item">
+             
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="IdOferta"/>
@@ -29,7 +30,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="IdEmpresa"/>
                                 </f:facet>
-                                <h:outputText value="#{item.idEmpresa}"/>
+                                <h:outputText value="#{item.email}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">

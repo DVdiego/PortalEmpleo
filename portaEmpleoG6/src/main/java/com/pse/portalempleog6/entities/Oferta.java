@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Oferta.findAll", query = "SELECT o FROM Oferta o")
     , @NamedQuery(name = "Oferta.findByIdOferta", query = "SELECT o FROM Oferta o WHERE o.idOferta = :idOferta")
-    , @NamedQuery(name = "Oferta.findByIdEmpresa", query = "SELECT o FROM Oferta o WHERE o.idEmpresa = :idEmpresa")
+    , @NamedQuery(name = "Oferta.findByEmail", query = "SELECT o FROM Oferta o WHERE o.email = :email")
     , @NamedQuery(name = "Oferta.findByNombreOferta", query = "SELECT o FROM Oferta o WHERE o.nombreOferta = :nombreOferta")
     , @NamedQuery(name = "Oferta.findByDescripcion", query = "SELECT o FROM Oferta o WHERE o.descripcion = :descripcion")
     , @NamedQuery(name = "Oferta.findByFechaIncorporacion", query = "SELECT o FROM Oferta o WHERE o.fechaIncorporacion = :fechaIncorporacion")
@@ -46,10 +46,12 @@ public class Oferta implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_oferta")
     private Integer idOferta;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_empresa")
-    private int idEmpresa;
+    @Size(min = 1, max = 255)
+    @Column(name = "email")
+    private String email;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -81,9 +83,9 @@ public class Oferta implements Serializable {
         this.idOferta = idOferta;
     }
 
-    public Oferta(Integer idOferta, int idEmpresa, String nombreOferta, String descripcion, Date fechaIncorporacion, String puestoTrabajo) {
+    public Oferta(Integer idOferta, String email, String nombreOferta, String descripcion, Date fechaIncorporacion, String puestoTrabajo) {
         this.idOferta = idOferta;
-        this.idEmpresa = idEmpresa;
+        this.email = email;
         this.nombreOferta = nombreOferta;
         this.descripcion = descripcion;
         this.fechaIncorporacion = fechaIncorporacion;
@@ -98,12 +100,12 @@ public class Oferta implements Serializable {
         this.idOferta = idOferta;
     }
 
-    public int getIdEmpresa() {
-        return idEmpresa;
+    public String getEmail() {
+        return email;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNombreOferta() {
@@ -168,7 +170,7 @@ public class Oferta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pse.portaempleog6.entities.Oferta[ idOferta=" + idOferta + " ]";
+        return "com.pse.portalempleog6.entities.Oferta[ idOferta=" + idOferta + " ]";
     }
     
 }

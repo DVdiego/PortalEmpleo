@@ -5,7 +5,7 @@
  */
 package com.pse.portalempleog6.rest;
 
-import com.pse.portalempleog6.entities.Admin;
+import com.pse.portalempleog6.entities.Users;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Named;
@@ -27,54 +27,54 @@ import javax.ws.rs.core.MediaType;
  */
 @Named
 @Stateless
-@Path("com.pse.portaempleog6.entities.admin")
-public class AdminFacadeREST extends AbstractFacade<Admin> {
+@Path("com.pse.portalempleog6.entities.users")
+public class UsersFacadeREST extends AbstractFacade<Users> {
 
     @PersistenceContext(unitName = "com.pse_portaEmpleoG6_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
-    public AdminFacadeREST() {
-        super(Admin.class);
+    public UsersFacadeREST() {
+        super(Users.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Admin entity) {
+    public void create(Users entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Admin entity) {
+    public void edit(@PathParam("id") String id, Users entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public void remove(@PathParam("id") String id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Admin find(@PathParam("id") Integer id) {
+    public Users find(@PathParam("id") String id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Admin> findAll() {
+    public List<Users> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Admin> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Users> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
