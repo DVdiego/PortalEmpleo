@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pse</groupId>
-    <artifactId>portaEmpleoG6</artifactId>
+    <artifactId>portalEmpleoG6</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>portaEmpleoG6</name>
+    <name>portalEmpleoG6</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
