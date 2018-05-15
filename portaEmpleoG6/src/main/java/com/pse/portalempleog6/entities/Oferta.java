@@ -6,8 +6,10 @@
 package com.pse.portalempleog6.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -75,6 +78,8 @@ public class Oferta implements Serializable {
     @Size(max = 140)
     @Column(name = "requisitos_minimos")
     private String requisitosMinimos;
+  
+  
 
     public Oferta() {
     }

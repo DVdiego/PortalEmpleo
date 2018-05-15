@@ -14,8 +14,6 @@
                 <h:outputText value="Mostrando #{ofertaFacadeREST.countREST()} 
                               ofertas en #{usersFacade.countREST()} empresas!"/>
                 <f:view>
-
-
                     <h:form>
                         <h1><h:outputText value="List"/></h1>
                         <p:dataTable value="#{ofertaFacadeREST.findAll()}" var="item">
@@ -64,11 +62,15 @@
                                 </f:facet>
                                 <h:outputText value="#{item.requisitosMinimos}"/>
                             </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{usersFacadeREST.find(item.email).nombre}"/>
+                            </p:column>
                         </p:dataTable>
                     </h:form>
                 </f:view>
-
-
             </ui:define>
 
         </ui:composition>
