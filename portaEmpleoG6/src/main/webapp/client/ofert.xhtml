@@ -23,13 +23,13 @@
                         <h:outputText value="Descripción"/>
                         <h:outputText value="#{ofertClientBean.ofert.descripcion}"/>
                         <h:outputText value="Fecha Incorporación"/>
-                        <h:outputText value=""/> 
+                        <h:outputText value="#{ofertClientBean.ofert.fechaIncorporacion}"/> 
                         <h:outputText value="Otros..."/> 
-                        <h:outputText value=""/>
+                        <h:outputText value="#{ofertClientBean.ofert.puestoTrabajo}"/>
                     </p:panelGrid>
 
                     <p:commandButton value="Back" action="oferts" icon="ui-icon-arrowrefresh-1-w"/>
-                    <p:commandButton value="Borrar" action="oferts" actionListener="#{ofertClientBean.deleteMovie()}"/>
+                    <p:commandButton value="Borrar" action="oferts" actionListener="#{ofertClientBean.deleteOfert()}"/>
                 </h:form>
  
             </ui:define>

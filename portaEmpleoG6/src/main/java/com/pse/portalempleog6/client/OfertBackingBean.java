@@ -21,7 +21,7 @@ public class OfertBackingBean implements Serializable{
     int ofertaId;
     String ofertName;
     String description;
-    Date registrationDate;
+    String registrationDate;
     String jobVacancies;
     String minimumRequirements;
     String email;
@@ -50,16 +50,13 @@ public class OfertBackingBean implements Serializable{
         this.description = description;
     }
 
-    public Date getRegistrationDate() {
+    public String getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
-    }
-
-
-    
+    }    
 
     public String getJobVacancies() {
         return jobVacancies;

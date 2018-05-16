@@ -6,6 +6,7 @@
 package com.pse.portalempleog6.client;
 
 import com.pse.portalempleog6.entities.Oferta;
+import com.pse.portalempleog6.json.OfertReader;
 import com.pse.portalempleog6.json.OfertWriter;
 import java.util.Date;
 import javax.annotation.PostConstruct;
@@ -44,35 +45,29 @@ public class OfertClientBean {
     
     //la clase entidad se llama Oferta pero usamos variables Ofert hay que tener cuidado con eso.
     public Oferta[] getOferts() {
-        return target
-                .request()
-                .get(Oferta[].class);
+        return target.request().get(Oferta[].class);
     }
     
       public Oferta getOfert() {
-        Oferta m = target
+        /*Oferta m = target
                 .path("{ofertaId}")
                 .resolveTemplate("ofertaId", bean.getOfertaId()).request()
                 .get(Oferta.class);
         return m;
-       
-        /*return target
-                .register(OfertReader.class)
-                .path("{ofertaId}")
-                .resolveTemplate("ofertaId", bean.getOfertaId()) .request(MediaType.APPLICATION_JSON) .get(Oferta.class);
-    */
+       */
+        return target.register(OfertReader.class).path("{ofertaId}").resolveTemplate("ofertaId", bean.getOfertaId()) .request(MediaType.APPLICATION_JSON) .get(Oferta.class);
+    
         }
       
       
     public void deleteOfert() {
-      target.path("{ofertaId}")
-       .resolveTemplate("ofertaId", bean.getOfertaId())
-       .request()
-       .delete();
+      target.path("{ofertaId}").resolveTemplate("ofertaId", bean.getOfertaId()).request().delete();
       }
     
     public void addOfert() {
         Oferta o = new Oferta();
+        
+        System.out.println(bean.description+" - "+bean.registrationDate);
         
         o.setNombreOferta(bean.getOfertName());
         o.setDescripcion(bean.getDescription());

@@ -46,7 +46,6 @@ public class OfertReader implements MessageBodyReader<Oferta>{
         
         Oferta oferta = new Oferta();
         JsonParser parser = Json.createParser(entityStream);
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
        
         while (parser.hasNext()) {
             switch (parser.next()) {
@@ -69,14 +68,13 @@ public class OfertReader implements MessageBodyReader<Oferta>{
                             oferta.setDescripcion(parser.getString());
                             break;
                         case "fecha_incorporacion": //ojo metemos un string
-                             Date date = new Date();
-                            oferta.setFechaIncorporacion(date);
+                            oferta.setFechaIncorporacion(parser.getString());
                             break;
                         case "puesto_trabajo":
-                            oferta.setDescripcion(parser.getString());
+                            oferta.setPuestoTrabajo(parser.getString());
                             break;
                         case "requisitos_minimos":
-                            oferta.setDescripcion(parser.getString());
+                            oferta.setRequisitosMinimos(parser.getString());
                             break;
                         default:
                             break;

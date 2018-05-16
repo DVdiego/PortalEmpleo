@@ -23,7 +23,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Home
+ * @author Isabel
  */
 @Named
 @Stateless

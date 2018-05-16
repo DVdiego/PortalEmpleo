@@ -6,10 +6,7 @@
 package com.pse.portalempleog6.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,17 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Home
+ * @author Isabel
  */
 @Entity
 @Table(name = "oferta")
@@ -67,9 +61,9 @@ public class Oferta implements Serializable {
     private String descripcion;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "fecha_incorporacion")
-    @Temporal(TemporalType.DATE)
-    private Date fechaIncorporacion;
+    private String fechaIncorporacion;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -78,9 +72,9 @@ public class Oferta implements Serializable {
     @Size(max = 140)
     @Column(name = "requisitos_minimos")
     private String requisitosMinimos;
-  
-  
 
+    
+    
     public Oferta() {
     }
 
@@ -88,7 +82,7 @@ public class Oferta implements Serializable {
         this.idOferta = idOferta;
     }
 
-    public Oferta(Integer idOferta, String email, String nombreOferta, String descripcion, Date fechaIncorporacion, String puestoTrabajo) {
+    public Oferta(Integer idOferta, String email, String nombreOferta, String descripcion, String fechaIncorporacion, String puestoTrabajo) {
         this.idOferta = idOferta;
         this.email = email;
         this.nombreOferta = nombreOferta;
@@ -129,11 +123,11 @@ public class Oferta implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaIncorporacion() {
+    public String getFechaIncorporacion() {
         return fechaIncorporacion;
     }
 
-    public void setFechaIncorporacion(Date fechaIncorporacion) {
+    public void setFechaIncorporacion(String fechaIncorporacion) {
         this.fechaIncorporacion = fechaIncorporacion;
     }
 

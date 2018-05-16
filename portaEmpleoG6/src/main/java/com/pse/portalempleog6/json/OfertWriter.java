@@ -38,17 +38,12 @@ public class OfertWriter implements MessageBodyWriter<Oferta> {
     }
 
     @Override
-    public void writeTo(Oferta t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
+    public void writeTo(Oferta t, Class<?> type, Type genericType, 
+            Annotation[] annotations, MediaType mediaType, 
+            MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
         JsonGenerator gen = Json.createGenerator(entityStream);
             gen.writeStartObject()
-                    .write("id_oferta", t.getIdOferta())
-                    .write("email", t.getEmail())
-                    .write("nombre_oferta", t.getNombreOferta())
-                    .write("descripcion", t.getDescripcion())
-                    .write("fecha_incorporacion", t.getFechaIncorporacion().toString())
-                    .write("puesto_trabajo", t.getPuestoTrabajo())
-                    .write("descripcion", t.getRequisitosMinimos())
-            .writeEnd();
+                    .write("id_oferta", t.getIdOferta()).write("email", t.getEmail()).write("nombre_oferta", t.getNombreOferta()).write("descripcion", t.getDescripcion()).write("fecha_incorporacion", t.getFechaIncorporacion()).write("puesto_trabajo", t.getPuestoTrabajo()).write("requisitos_minimos", t.getRequisitosMinimos()).writeEnd();
             gen.flush();
     }
     
