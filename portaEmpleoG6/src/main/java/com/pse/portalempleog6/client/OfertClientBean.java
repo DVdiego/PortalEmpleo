@@ -6,6 +6,8 @@
 package com.pse.portalempleog6.client;
 
 import com.pse.portalempleog6.entities.Oferta;
+import com.pse.portalempleog6.json.OfertWriter;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
@@ -13,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
@@ -67,4 +70,19 @@ public class OfertClientBean {
        .request()
        .delete();
       }
+    
+    public void addOfert() {
+        Oferta o = new Oferta();
+        
+        o.setNombreOferta(bean.getOfertName());
+        o.setDescripcion(bean.getDescription());
+        o.setFechaIncorporacion(bean.getRegistrationDate());
+        o.setPuestoTrabajo(bean.getJobVacancies());
+        o.setRequisitosMinimos(bean.getMinimumRequirements());
+        o.setEmail(bean.getEmail());
+        o.setIdOferta(bean.getOfertaId());
+        target.register(OfertWriter.class)
+                .request()
+                .post(Entity.entity(o, MediaType.APPLICATION_JSON));
+    }
 }
