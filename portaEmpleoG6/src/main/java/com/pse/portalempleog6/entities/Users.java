@@ -56,9 +56,11 @@ public class Users implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "nombre")
     private String nombre;
+    
     @Size(max = 30)
     @Column(name = "apellido")
     private String apellido;
+    
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
@@ -76,11 +78,19 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    public Users(String email, String password, String nombre) {
+ 
+
+    public Users(String email, String password, String nombre, String apellido, Date fechaNacimiento, String numeroTarjeta, String numeroTelefono) {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.numeroTarjeta = numeroTarjeta;
+        this.numeroTelefono = numeroTelefono;
     }
+    
+    
 
     public String getEmail() {
         return email;

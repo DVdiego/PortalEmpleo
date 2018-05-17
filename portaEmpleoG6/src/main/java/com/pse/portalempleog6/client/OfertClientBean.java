@@ -67,8 +67,6 @@ public class OfertClientBean {
     public void addOfert() {
         Oferta o = new Oferta();
         
-        System.out.println(bean.description+" - "+bean.registrationDate);
-        
         o.setNombreOferta(bean.getOfertName());
         o.setDescripcion(bean.getDescription());
         o.setFechaIncorporacion(bean.getRegistrationDate());
@@ -79,5 +77,22 @@ public class OfertClientBean {
         target.register(OfertWriter.class)
                 .request()
                 .post(Entity.entity(o, MediaType.APPLICATION_JSON));
+    }
+    
+    
+    
+       public void editOfert() {
+        Oferta o = new Oferta();
+        
+        o.setNombreOferta(bean.getOfertName());
+        o.setDescripcion(bean.getDescription());
+        o.setFechaIncorporacion(bean.getRegistrationDate());
+        o.setPuestoTrabajo(bean.getJobVacancies());
+        o.setRequisitosMinimos(bean.getMinimumRequirements());
+        o.setEmail(bean.getEmail());
+        o.setIdOferta(bean.getOfertaId());
+        target.register(OfertWriter.class)
+                .request()
+                .put(Entity.entity(o, MediaType.APPLICATION_JSON));
     }
 }
