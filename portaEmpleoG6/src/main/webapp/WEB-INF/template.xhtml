@@ -39,12 +39,18 @@
                         <p:menuitem value="Registro" url="/faces/registro.xhtml"
                                     rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-pencil"/>
                         <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
-                            <p:menuitem value="Empresa" action="test" icon="ui-iconcalculator"/>
-                            <p:menuitem value="Candidato" action="hiring" icon="ui-icon-cart"/>
+                            <p:menuitem value="Candidato" action="subscribe" icon="ui-icon-cart"/>
                             <p:menuitem value="Chat" url="/faces/chat/chatroom.xhtml" icon="ui-icon-person"/>
                             <p:menuitem value="Info ofertas" url="/faces/client/oferts.xhtml" icon="ui-iconcalculator"/>
                         </p:submenu>
                         <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">
+                            <p:menuitem value="Agregar Empresa" url="/faces/admin/registerEnterprise.xhtml" icon="ui-iconcalculator"/>
+                            <p:menuitem value="Info ofertas" url="/faces/client/oferts.xhtml" icon="ui-iconcalculator"/>
+
+                        </p:submenu>
+                        
+                        <p:submenu label ="Empresa" rendered="#{request.isUserInRole('enterprise')}">
+                            
                             <p:menuitem value="Info ofertas" url="/faces/client/oferts.xhtml" icon="ui-iconcalculator"/>
 
                         </p:submenu>
