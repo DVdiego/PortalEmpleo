@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pse.portalempleog6.hiring;
+package com.pse.portalempleog6.subscribe;
 
 //import com.pse.cines.entities.Movie;
 //import com.pse.cines.entities.ShowTiming;
@@ -24,8 +24,8 @@ import javax.persistence.PersistenceContext;
  * @author Home
  */
 @Named
-@FlowScoped("hiring")
-public class Hiring implements Serializable{
+@FlowScoped("subscribe")
+public class Subscribe implements Serializable{
 
     
     int ofertaId;

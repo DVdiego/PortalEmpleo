@@ -92,6 +92,8 @@ public class OfertClientBean {
         o.setEmail(bean.getEmail());
         o.setIdOferta(bean.getOfertaId());
         target.register(OfertWriter.class)
+                .path("{ofertaId}")
+                .resolveTemplate("ofertaId", bean.getOfertaId())
                 .request()
                 .put(Entity.entity(o, MediaType.APPLICATION_JSON));
     }

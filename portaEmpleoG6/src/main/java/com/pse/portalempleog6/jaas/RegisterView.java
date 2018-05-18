@@ -154,22 +154,37 @@ private static Logger log = Logger.getLogger(RegisterView.class.getName());
         }
     }
     
-        public String register() {
-            
-            Date fecha = null;
-            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-            
-            try{
-                fecha = ft.parse(birthDate);
-            } catch (ParseException ex){
-                
-            }
-           
+    public String register() {
+
+        Date fecha = null;
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            fecha = ft.parse(birthDate);
+        } catch (ParseException ex) {
+
+        }
+
         Users user = new Users(email, password, name, lastName, fecha, cardNumber, phoneNumber);
-        userEJB.createUser(user);
+        userEJB.createUser(user, "users");
         log.info("Nuevo usuario creado con e-mail: " + email + " y nombre: " + name);
-        return "newTemplateClient";
+        return "registryok";
     }
+    
+    
+     public String registerEnterprise() {
+
+        Date fecha = new Date();
+        //SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+
+        Users user = new Users(email, password, name, lastName, fecha, cardNumber, phoneNumber);
+        userEJB.createUser(user,"enterprise");
+        log.info("Nuevo usuario creado con e-mail: " + email + " y nombre: " + name);
+        return "/faces/admin/registered";
+    }
+    
+    
+     
 
 
 

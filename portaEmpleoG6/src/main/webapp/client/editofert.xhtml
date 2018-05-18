@@ -12,65 +12,40 @@
 
             <ui:define name="content">
                 <h1>Editar oferta</h1>
-                <h2><h:outputText value="Información de la oferta de empleo #{ofertClientBean.ofert.nombreOferta}"/></h2> 
-                    <f:view>
-                    <h:form>
-                        <h1><h:outputText value="List"/></h1>
-                        <p:dataTable value="#{ofertaFacadeREST.find(ofertClientBean.ofert.idOferta).id}" var="item">
-             
-                            <p:row> 
-                                <f:facet name="header">
-                                    <h:outputText value="IdOferta"/>
-                                </f:facet>
-                                <h:outputText value="#{id}"/>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="IdEmpresa"/>
-                                </f:facet>
-                                <h:outputText value="#{item.email}"/>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="NombreOferta"/>
-                                </f:facet>
-                                <h:outputText value="#{item.nombreOferta}"/>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="Descripcion"/>
-                                </f:facet>
-                                <h:outputText value="#{item.descripcion}"/>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="FechaIncorporacion"/>
-                                </f:facet>
-                                <h:outputText value="#{item.fechaIncorporacion}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:outputText>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="PuestoTrabajo"/>
-                                </f:facet>
-                                <h:outputText value="#{item.puestoTrabajo}"/>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="RequisitosMinimos"/>
-                                </f:facet>
-                                <h:outputText value="#{item.requisitosMinimos}"/>
-                            </p:row>
-                            <p:row>
-                                <f:facet name="header">
-                                    <h:outputText value="Id"/>
-                                </f:facet>
-                                <h:outputText value="#{usersFacadeREST.find(item.email).nombre}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:form>
-                </f:view>
+                <h:form>
+                    
+                    <p:messages id="messages" closable="true" autoUpdate="true"/>
+                    <table cellpadding="5" cellspacing="5">
+                        <tr>
+                            <th align="left">Nombre Oferta:</th>
+                            <td><h:inputText value="#{ofertBackingBean.ofertName}"/> </td>
+                        </tr>
+                        <tr>
+                            <th align="left">Puesto Trabajo:</th>
+                            <td><h:inputText value="#{ofertBackingBean.jobVacancies}"/></td>
+                        </tr>
+                        <tr>
+                            <th align="left">Descripción:</th>
+                            <td><h:inputText value="#{ofertBackingBean.description}"/></td>
+                        </tr>
+                        <tr>
+                            <th align="left">Requisitos Minimos:</th>
+                            <td><h:inputText value="#{ofertBackingBean.minimumRequirements}"/></td>
+                        </tr>
+
+                        <tr>
+                            <th align="left">Fecha Incorporación</th>
+                            <td><h:inputText value="#{ofertBackingBean.registrationDate}"/></td>
+                        </tr>
+
+                        <tr>
+                            <th align="left">Email</th>
+                            <td><h:inputText value="#{ofertBackingBean.email}"/></td>
+                        </tr>
+
+                    </table>
+                    <p:commandButton value="Editar" action="oferts" actionListener="#{ofertClientBean.editOfert()}"/>
+                </h:form>
             </ui:define>
 
         </ui:composition>

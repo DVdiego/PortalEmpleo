@@ -22,7 +22,7 @@ public class UserEJB {
     @PersistenceContext
     private EntityManager em;
 
-    public Users createUser(Users user) {
+    public Users createUser(Users user, String groupName) {
         try {
             user.setPassword(AuthenticationUtils.encodeSHA256(user.getPassword()));
         } catch (Exception e) {
@@ -30,7 +30,7 @@ public class UserEJB {
         }
         UserGroups group = new UserGroups();
         group.setEmail(user.getEmail());
-        group.setGroupname("users");
+        group.setGroupname(groupName);
         em.persist(user);
         em.persist(group);
         return user;

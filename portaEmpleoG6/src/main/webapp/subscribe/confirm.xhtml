@@ -12,19 +12,19 @@
 
             <ui:define name="content">
                 <c:choose>
-                    <c:when test="#{hiring.ofertaName == 'none'}">
+                    <c:when test="#{subscribe.ofertaName == 'none'}">
                         <h2>No se ha encontrado cine, elija otro horario</h2>
                         <h:form>
-                            Oferta: #{hiring.ofertaId}<p/>      
+                            Oferta: #{subscribe.ofertaId}<p/>      
                             <p:commandButton id="back" value="Atrás" action="hiring" icon="ui-iconarrowrefresh-1-w"/>
                         </h:form>
                     </c:when>
                     <c:otherwise>
                         <h2>¿Confirmar?</h2>
                         <h:form>
-                            Oferta: #{hiring.ofertaName}<p/>
+                            Oferta: #{subscribe.ofertaName}<p/>
                             <p/><p:commandButton id="next" value="Aceptar" action="test"/>
-                            <p:commandButton id="back" value="Atrás" action="hiring" icon="ui-iconarrowrefresh-1-w"/>
+                            <p:commandButton id="back" value="Atrás" action="subscribe" icon="ui-iconarrowrefresh-1-w"/>
                         </h:form>
                     </c:otherwise>
                 </c:choose> 
