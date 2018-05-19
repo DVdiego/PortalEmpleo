@@ -31,7 +31,7 @@ public class LoginView implements Serializable{
     private static Logger log = Logger.getLogger(RegisterView.class.getName());
     
     @Inject
-private UserEJB userEJB;
+    private UserEJB userEJB;
     
     private Users user;
     
@@ -91,6 +91,8 @@ private UserEJB userEJB;
             return "login";
         }
         this.user = userEJB.findByEmail(request.getUserPrincipal().getName());
+
+        
         if (request.isUserInRole("users")) {
             return "/users/privatepage?faces-redirect=true";
         } else if (request.isUserInRole("admin")) {

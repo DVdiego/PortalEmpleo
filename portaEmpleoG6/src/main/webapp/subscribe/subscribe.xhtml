@@ -16,7 +16,7 @@
                     <h:selectOneRadio value="#{subscribe.ofertaId}" layout="pageDirection" required="true">
                         <f:selectItems value="#{ofertaFacadeREST.findAll()}" var="m" itemValue="#{m.idOferta}" itemLabel="#{m.nombreOferta}"/>
                     </h:selectOneRadio>
-                    <p:commandButton id="next" value="Selecciona una oferta" action="confirm"/>
+                    <p:commandButton id="next" value="Selecciona una oferta" action="details"/>
                 </h:form> 
             </ui:define>
             

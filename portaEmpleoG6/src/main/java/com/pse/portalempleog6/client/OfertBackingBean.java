@@ -5,6 +5,7 @@
  */
 package com.pse.portalempleog6.client;
 
+import com.pse.portalempleog6.entities.Users;
 import java.io.Serializable;
 import java.util.Date;
 import javax.enterprise.context.SessionScoped;
@@ -25,6 +26,7 @@ public class OfertBackingBean implements Serializable{
     String jobVacancies;
     String minimumRequirements;
     String email;
+    Users user;
 
     public int getOfertaId() {
         return ofertaId;
@@ -82,6 +84,15 @@ public class OfertBackingBean implements Serializable{
         this.email = email;
     }
 
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+    
+    
     
     
 }

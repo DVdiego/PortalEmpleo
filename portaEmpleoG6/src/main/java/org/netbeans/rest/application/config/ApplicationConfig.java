@@ -29,8 +29,10 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.pse.portalempleog6.json.CandidacyWriter.class);
         resources.add(com.pse.portalempleog6.json.OfertReader.class);
         resources.add(com.pse.portalempleog6.json.OfertWriter.class);
+        resources.add(com.pse.portalempleog6.json.UserWriter.class);
         resources.add(com.pse.portalempleog6.rest.CandidaturasFacadeREST.class);
         resources.add(com.pse.portalempleog6.rest.OfertaFacadeREST.class);
         resources.add(com.pse.portalempleog6.rest.UserGroupsFacadeREST.class);

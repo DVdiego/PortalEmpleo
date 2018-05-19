@@ -10,7 +10,6 @@
     <body>
 
         <ui:composition template="./../WEB-INF/template.xhtml">
-
             <ui:define name="content">
                 <h:form>
                     <h:selectOneRadio value="#{ofertBackingBean.ofertaId}" layout="pageDirection">
@@ -18,12 +17,12 @@
                             <f:selectItem itemValue="#{m.idOferta}" itemLabel="#{m.nombreOferta}"/>
                         </c:forEach>
                     </h:selectOneRadio>
+                    
                     <p:commandButton value="Detalles" action="ofert" />
                     <p:commandButton value="Editar" action="editofert" />
                     <p:commandButton value="Nueva Oferta" action="addofert"/>
                 </h:form>
             </ui:define>
-
         </ui:composition>
 
     </body>

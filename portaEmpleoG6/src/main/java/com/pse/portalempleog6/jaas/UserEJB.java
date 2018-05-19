@@ -8,6 +8,7 @@ package com.pse.portalempleog6.jaas;
 import com.pse.portalempleog6.entities.UserGroups;
 import com.pse.portalempleog6.entities.Users;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -21,7 +22,9 @@ public class UserEJB {
     
     @PersistenceContext
     private EntityManager em;
-
+    String email;
+    Users user;
+    
     public Users createUser(Users user, String groupName) {
         try {
             user.setPassword(AuthenticationUtils.encodeSHA256(user.getPassword()));
@@ -47,5 +50,16 @@ public class UserEJB {
         }
         return user;
     }
+
+    public String getEmail() {
+        return FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+ 
+    
     
 }
