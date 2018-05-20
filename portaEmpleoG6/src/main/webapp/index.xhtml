@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -14,61 +15,60 @@
                 <h:outputText value="Mostrando #{ofertaFacadeREST.countREST()} 
                               ofertas en #{usersFacade.countREST()} empresas!"/>
                 <f:view>
-                    <h:form>
+                    <h:form id="form">
+                        
+                        <p:growl id="msgs" showDetail="true" />
                         <h1><h:outputText value="List"/></h1>
-                        <p:dataTable value="#{ofertaFacadeREST.findAll()}" var="item">
+                        <p:dataGrid id="users" value="#{ofertaFacadeREST.findAll()}" var="item" columns="3" layout="grid"
+                                    rows="12" paginator="true" 
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="6,12,16">
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="IdOferta"/>
-                                </f:facet>
-                                <h:outputText value="#{item.idOferta}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="IdEmpresa"/>
-                                </f:facet>
+                   
+                            <p:column headerText="Codigo" style="width:100px" filterBy="#{item.idOferta}" filterMatchMode="contains">
+               
                                 <h:outputText value="#{item.email}"/>
                             </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="NombreOferta"/>
-                                </f:facet>
+                            <p:column headerText="Nombre" filterBy="#{item.nombreOferta}" filterMatchMode="contains">
+                  
                                 <h:outputText value="#{item.nombreOferta}"/>
                             </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Descripcion"/>
-                                </f:facet>
+                            <p:column headerText="Descripcion">
+                      
                                 <h:outputText value="#{item.descripcion}"/>
                             </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="FechaIncorporacion"/>
-                                </f:facet>
-                                <h:outputText value="#{item.fechaIncorporacion}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:outputText>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="PuestoTrabajo"/>
-                                </f:facet>
+            
+                            <p:column headerText="PuestoTrabajo">
+                     
                                 <h:outputText value="#{item.puestoTrabajo}"/>
                             </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="RequisitosMinimos"/>
-                                </f:facet>
-                                <h:outputText value="#{item.requisitosMinimos}"/>
+                            
+                            <p:column style="width:40px">
+                                <h:panelGrid columns="3" styleClass="actiosn" cellpadding="2">
+                                                                                       
+                                    <p:commandButton id="selectButton" update=":form:display" oncomplete="ofertDialog.show()" icon="ui-icon-search" title="View">
+                                        <f:setPropertyActionListener value="#{item}" target="#{ofertBackingBean.ofertaId}"/>   
+                                    </p:commandButton>                         
+                                        
+                                </h:panelGrid>
+            
                             </p:column>
-                            <p:column>
+          
+                        </p:dataGrid>
+                        
+                        
+                        <p:dialog header="Información" widgetVar="ofertDialog" resizable="false" id="ofertDlg" showEffect="fade" hideEffect="explode" modal="true">
+                            
+                            <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto">
                                 <f:facet name="header">
-                                    <h:outputText value="Id"/>
+                                    <h:outputText value="Datos de la oferta"/>
                                 </f:facet>
-                                <h:outputText value="#{usersFacadeREST.find(item.email).nombre}"/>
-                            </p:column>
-                        </p:dataTable>
+                                <h:outputText value="Descripción:"/>
+                                <h:outputText value="#{ofertBackingBean.description}"/>
+                                
+                            </h:panelGrid>
+                                
+                        </p:dialog>
                     </h:form>
                 </f:view>
             </ui:define>

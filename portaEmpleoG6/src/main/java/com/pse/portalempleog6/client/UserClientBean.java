@@ -13,9 +13,11 @@ import com.pse.portalempleog6.jaas.UserEJB;
 import com.pse.portalempleog6.json.CandidacyWriter;
 import com.pse.portalempleog6.json.OfertReader;
 import com.pse.portalempleog6.json.OfertWriter;
+import com.pse.portalempleog6.json.UserWriter;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
@@ -84,20 +86,30 @@ public class UserClientBean {
     
     
     
-    public void editUser() {
-        Users o = ejb.findByEmail(ejb.getEmail());
+    public String editUser() {
+        Users o = ejb.findByEmail(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
         
-        System.out.println("USUARIO"+o.toString());
-        o.setApellido(bean.getApellido());
-        o.setEmail(bean.getEmail());
-        o.setNombre(bean.getNombre());
-        o.setNumeroTarjeta(bean.getNumero_tarjeta());
-        o.setNumeroTelefono(bean.numero_telefono);
-        target.register(OfertWriter.class)
+        System.out.println("USUARIO "+o.getApellido().toString());
+         System.out.println("USUARIO "+o.getNombre().toString());
+          System.out.println("USUARIO "+o.getNumeroTelefono().toString());
+           System.out.println("USUARIO "+o.getNumeroTarjeta().toString());
+      
+        Users e = new Users();
+        e.setFechaNacimiento(o.getFechaNacimiento());
+        e.setPassword(o.getPassword());
+        e.setApellido(bean.getApellido());
+        e.setEmail(o.getEmail());
+        e.setNombre(bean.getNombre());
+        e.setNumeroTarjeta(bean.getNumero_tarjeta());
+        e.setNumeroTelefono(bean.getNumero_telefono());
+        target.register(UserWriter.class)
                 .path("{email}")
-                .resolveTemplate("ofertaId", bean.getEmail())
+                .resolveTemplate("email", o.getEmail())
                 .request()
-                .put(Entity.entity(o, MediaType.APPLICATION_JSON));
+                .put(Entity.entity(e, MediaType.APPLICATION_JSON));
+        
+        
+        return "user";
     }
        
     

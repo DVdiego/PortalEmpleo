@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.ws.rs.Produces;
@@ -41,8 +45,19 @@ public class UserWriter implements MessageBodyWriter<Users>{
     public void writeTo(Users t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
         
         JsonGenerator gen = Json.createGenerator(entityStream);
+              String fecha = null;
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+
+        fecha = ft.format(t.getFechaNacimiento());
             gen.writeStartObject()
-                    .write("email", t.getEmail()).write("nombre", t.getNombre()).write("apellido", t.getApellido()).write("numero_tarjeta", t.getNumeroTarjeta()).write("numero_telefono", t.getNumeroTelefono()).writeEnd();
+                    .write("email", t.getEmail())
+                    .write("password", t.getPassword())
+                    .write("nombre", t.getNombre())
+                    .write("apellido", t.getApellido())
+                    .write("fecha_nacimiento", fecha)
+                    .write("numero_tarjeta", t.getNumeroTarjeta())
+                    .write("numero_telefono", t.getNumeroTelefono())
+                    .writeEnd();
             gen.flush();
     }
      
