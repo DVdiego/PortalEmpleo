@@ -19,42 +19,42 @@
                         
                         <p:growl id="msgs" showDetail="true" />
                         <h1><h:outputText value="List"/></h1>
-                        <p:dataGrid id="users" value="#{ofertaFacadeREST.findAll()}" var="item" columns="3" layout="grid"
+                        <p:dataTable id="oferts" value="#{ofertaFacadeREST.findAll()}" var="ofert" 
                                     rows="12" paginator="true" 
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    rowsPerPageTemplate="6,12,16">
+                                    rowsPerPageTemplate="6,9,12">
 
                    
                             <p:column headerText="Codigo" style="width:100px" filterBy="#{item.idOferta}" filterMatchMode="contains">
                
-                                <h:outputText value="#{item.email}"/>
+                                <h:outputText value="#{ofert.email}"/>
                             </p:column>
-                            <p:column headerText="Nombre" filterBy="#{item.nombreOferta}" filterMatchMode="contains">
+                            <p:column headerText="Nombre" filterBy="#{ofert.nombreOferta}" filterMatchMode="contains">
                   
-                                <h:outputText value="#{item.nombreOferta}"/>
+                                <h:outputText value="#{ofert.nombreOferta}"/>
                             </p:column>
                             <p:column headerText="Descripcion">
                       
-                                <h:outputText value="#{item.descripcion}"/>
+                                <h:outputText value="#{ofert.descripcion}"/>
                             </p:column>
             
                             <p:column headerText="PuestoTrabajo">
                      
-                                <h:outputText value="#{item.puestoTrabajo}"/>
+                                <h:outputText value="#{ofert.puestoTrabajo}"/>
                             </p:column>
                             
                             <p:column style="width:40px">
-                                <h:panelGrid columns="3" styleClass="actiosn" cellpadding="2">
+                                <h:panelGrid columns="3" styleClass="actions" cellpadding="2">
                                                                                        
                                     <p:commandButton id="selectButton" update=":form:display" oncomplete="ofertDialog.show()" icon="ui-icon-search" title="View">
-                                        <f:setPropertyActionListener value="#{item}" target="#{ofertBackingBean.ofertaId}"/>   
+                                        <f:setPropertyActionListener value="#{ofert}" target="#{ofertBackingBean.oferta}"/>   
                                     </p:commandButton>                         
                                         
                                 </h:panelGrid>
             
                             </p:column>
           
-                        </p:dataGrid>
+                        </p:dataTable>
                         
                         
                         <p:dialog header="Información" widgetVar="ofertDialog" resizable="false" id="ofertDlg" showEffect="fade" hideEffect="explode" modal="true">
@@ -64,8 +64,9 @@
                                     <h:outputText value="Datos de la oferta"/>
                                 </f:facet>
                                 <h:outputText value="Descripción:"/>
-                                <h:outputText value="#{ofertBackingBean.description}"/>
-                                
+                                <h:outputText value="#{ofertBackingBean.oferta.descripcion}"/>
+                                <h:outputText value="Fecha incoporación:"/>
+                                <h:outputText value="#{ofertBackingBean.oferta.fechaIncorporacion}"/>
                             </h:panelGrid>
                                 
                         </p:dialog>
