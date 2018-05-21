@@ -51,6 +51,15 @@ public class UserEJB {
         return user;
     }
 
+    public void editUser(Users User){
+        
+        em.merge(User);
+        
+        
+        
+    }
+            
+            
     public String getEmail() {
         return FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
     }

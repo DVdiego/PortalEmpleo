@@ -89,10 +89,6 @@ public class UserClientBean {
     public String editUser() {
         Users o = ejb.findByEmail(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
         
-        System.out.println("USUARIO "+o.getApellido().toString());
-         System.out.println("USUARIO "+o.getNombre().toString());
-          System.out.println("USUARIO "+o.getNumeroTelefono().toString());
-           System.out.println("USUARIO "+o.getNumeroTarjeta().toString());
       
         Users e = new Users();
         e.setFechaNacimiento(o.getFechaNacimiento());
@@ -102,13 +98,7 @@ public class UserClientBean {
         e.setNombre(bean.getNombre());
         e.setNumeroTarjeta(bean.getNumero_tarjeta());
         e.setNumeroTelefono(bean.getNumero_telefono());
-        target.register(UserWriter.class)
-                .path("{email}")
-                .resolveTemplate("email", o.getEmail())
-                .request()
-                .put(Entity.entity(e, MediaType.APPLICATION_JSON));
-        
-        
+        ejb.editUser(e);
         return "user";
     }
        
